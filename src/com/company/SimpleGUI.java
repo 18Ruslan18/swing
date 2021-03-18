@@ -2,6 +2,9 @@ package com.company;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import static com.company.DrawPanel.*;
+
 public class SimpleGUI extends JFrame {
     private JButton buttonStart = new JButton("Запуск");
     private JButton buttonEditLine = new JButton("Новые отрезки");
@@ -12,10 +15,11 @@ public class SimpleGUI extends JFrame {
     private JRadioButton radioButton2 = new JRadioButton("Select that");
     private JCheckBox checkBox = new JCheckBox("Check", false);
     private JPanel container = new JPanel(new GridLayout(1,3,2,2));
+    private DrawPanel drawPanel = new DrawPanel(700,700);
     public SimpleGUI(){
 
         super("Simple Example");
-        this.setBounds(100,100,700,700);
+        this.setBounds(300,200,700,700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //container.add(label);
         //container.add(textField);
@@ -33,6 +37,7 @@ public class SimpleGUI extends JFrame {
         buttonEditSquare.addActionListener(new ButtonEventListnerSquare());
         container.add(buttonEditSquare);
         add(container, BorderLayout.SOUTH);
+        add(drawPanel, BorderLayout.CENTER);
     }
 class ButtonEventListnerStart implements  ActionListener{
         public void actionPerformed(ActionEvent event){
@@ -41,11 +46,17 @@ class ButtonEventListnerStart implements  ActionListener{
 }
     class ButtonEventListnerSquare implements  ActionListener{
         public void actionPerformed(ActionEvent event){
+            DrawPanel.tmp1 =true;
+            DrawPanel.tmp2 =false;
+            drawPanel = new DrawPanel(700,700);
             JOptionPane.showMessageDialog(null,"Размеры окна изменены","Окно",JOptionPane.PLAIN_MESSAGE);
         }
     }
     class ButtonEventListnerLine implements  ActionListener{
         public void actionPerformed(ActionEvent event){
+            DrawPanel.tmp1 =false;
+            DrawPanel.tmp2 =true;
+            drawPanel = new DrawPanel(700,700);
             JOptionPane.showMessageDialog(null,"Отрезки изменены","Отрезки",JOptionPane.PLAIN_MESSAGE);
         }
     }
