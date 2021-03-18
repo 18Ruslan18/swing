@@ -26,21 +26,27 @@ public class SimpleGUI extends JFrame {
         //radioButton1.setSelected(true);
         //container.add(radioButton2);
         //container.add(checkBox);
-        buttonStart.addActionListener(new ButtonEventListner());
+        buttonStart.addActionListener(new ButtonEventListnerStart());
         container.add(buttonStart);
+        buttonEditLine.addActionListener(new ButtonEventListnerLine());
         container.add(buttonEditLine);
+        buttonEditSquare.addActionListener(new ButtonEventListnerSquare());
         container.add(buttonEditSquare);
         add(container, BorderLayout.SOUTH);
     }
-class ButtonEventListner implements  ActionListener{
+class ButtonEventListnerStart implements  ActionListener{
         public void actionPerformed(ActionEvent event){
-            String message ="";
-            message += "Button was pressed\n";
-            message += "Text is " + textField.getText()+"\n";
-            message+= (radioButton1.isSelected() ? "Radio 1" : "Radio 2") + "isSelected\n";
-            message+="Checkbox is" + (checkBox.isSelected() ? "checked" : "unchecked");
-            JOptionPane.showMessageDialog(null,message,"output",JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Отрезки разделены на 3 вида","Запуск",JOptionPane.PLAIN_MESSAGE);
         }
 }
-
+    class ButtonEventListnerSquare implements  ActionListener{
+        public void actionPerformed(ActionEvent event){
+            JOptionPane.showMessageDialog(null,"Размеры окна изменены","Окно",JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+    class ButtonEventListnerLine implements  ActionListener{
+        public void actionPerformed(ActionEvent event){
+            JOptionPane.showMessageDialog(null,"Отрезки изменены","Отрезки",JOptionPane.PLAIN_MESSAGE);
+        }
+    }
 }
