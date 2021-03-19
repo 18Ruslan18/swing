@@ -5,11 +5,14 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
+import static sun.swing.MenuItemLayoutHelper.max;
+
 public class DrawPanel extends JPanel {
     private int width;
     private int height;
     public static boolean tmp1 = true;
     public static boolean tmp2 = true;
+    public static boolean tmp3 = false;
     public static int a_temp1;
     public static int a_temp2;
     public static  Point2d a;
@@ -94,6 +97,10 @@ public class DrawPanel extends JPanel {
             g.setColor(Color.magenta);
             drawline(g);
         }
+        if (tmp3)  {
+            repaint();
+            LineControl(g);
+        }
         //for (int i =0; i<100; i++) System.out.println((int)Random(350));
     }
     private void drawLine(Graphics g, Point2d p1, Point2d p2) {
@@ -120,6 +127,30 @@ public class DrawPanel extends JPanel {
             int y2 = (int) lines.get(i).getB().getY();
             g.drawLine(x1, y1, x2, y2);
     }}
+    public void LineControl(Graphics g){
+        int x1=Math.min(a_temp1,c_temp1);
+        int x2 = Math.max(a_temp1,c_temp1);
+        int y1 = Math.min(a_temp2,b_temp1);
+        int y2 = Math.max(a_temp2,b_temp1);
+        for (int i=0;i<20;i++)
+        {
+            int xn = (int) lines.get(i).getA().getX();
+            int yn = (int) lines.get(i).getA().getY();
+            int xk = (int) lines.get(i).getB().getX();
+            int yk = (int) lines.get(i).getB().getY();
+            if (((xn<x1 && xk<x1) || (xn>x2 && xk>x2) || (yn<y1 && yk<y1) || (yn>y2 && yk>y2))) {
+                g.setColor(Color.RED);
+                g.drawLine(xn, yn, xk, yk);
+            }
+            else if (((xn<=x1 || xn>=x2) || (xk<=x1 || xk>=x2) || (yn<=y1 || yn>=y2) || (yk<=y1 || yk>=y2))){
+                g.setColor(Color.BLUE);
+                g.drawLine(xn, yn, xk, yk);
+            } else {
+                g.setColor(Color.cyan);
+                g.drawLine(xn, yn, xk, yk);
+            }
+        }
+    }
     /*public void ReWindow(Graphics g){
         g.setColor(Color.pink);
         drawLine(g,a,b);

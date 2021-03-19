@@ -41,6 +41,9 @@ public class SimpleGUI extends JFrame {
     }
 class ButtonEventListnerStart implements  ActionListener{
         public void actionPerformed(ActionEvent event){
+            DrawPanel.tmp1 =false;
+            DrawPanel.tmp2 =false;
+            DrawPanel.tmp3=true;
             JOptionPane.showMessageDialog(null,"Отрезки разделены на 3 вида","Запуск",JOptionPane.PLAIN_MESSAGE);
         }
 }
@@ -48,6 +51,7 @@ class ButtonEventListnerStart implements  ActionListener{
         public void actionPerformed(ActionEvent event){
             DrawPanel.tmp1 =true;
             DrawPanel.tmp2 =false;
+            DrawPanel.tmp3=false;
             drawPanel = new DrawPanel(700,700);
             JOptionPane.showMessageDialog(null,"Размеры окна изменены","Окно",JOptionPane.PLAIN_MESSAGE);
         }
@@ -56,6 +60,7 @@ class ButtonEventListnerStart implements  ActionListener{
         public void actionPerformed(ActionEvent event){
             DrawPanel.tmp1 =false;
             DrawPanel.tmp2 =true;
+            DrawPanel.tmp3=false;
             drawPanel = new DrawPanel(700,700);
             JOptionPane.showMessageDialog(null,"Отрезки изменены","Отрезки",JOptionPane.PLAIN_MESSAGE);
         }
